@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+body {
+  color: #fff;
+  font-family: 'NexonLv1Gothic';
+  font-weight: 300;
+  background-color: #111;
+}
+
+#parallax__title {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 1000;
+}
+#parallax__title h1 {
+  font-size: 30px;
+  border-bottom: 1px dashed #fff;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-weight: 400;
+  display: inline-block;
+}
+#parallax__title p {
+  font-size: 16px;
+}
+#parallax__title ul {
+  margin-top: 10px;
+}
+#parallax__title li {
+  display: inline;
+}
+#parallax__title li a {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px dashed #fff;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+}
+#parallax__title li.active a {
+  background: #fff;
+  color: #000;
+}
