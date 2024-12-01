@@ -2,21 +2,48 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import DebugPanel from './DebugPanel';
+import { useState } from 'react';
+import _ from 'lodash';
+import GSDevTools from 'gsap-trial/GSDevTools';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger, GSDevTools);
+
+const DEFAULT_ANIMATION = {
+  duration: 1,
+  y: 50,
+};
 
 export const Gsap3 = () => {
+  const [animationConfigs, setAnimationConfigs] = useState(() => {
+    const saved = localStorage.getItem('gsapDebugConfig');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return _.range(1, 9).reduce(
+      (acc, i) => ({
+        ...acc,
+        [`t${i}`]: { ...DEFAULT_ANIMATION },
+      }),
+      {}
+    );
+  });
+
+  const [selectedText, setSelectedText] = useState('t1');
+
   useGSAP(() => {
     const ani = gsap.timeline();
-    ani
-      .from('#section .t1', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t2', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t3', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t4', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t5', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t6', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t7', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
-      .from('#section .t8', { autoAlpha: 0, duration: 1, y: 50 }, '+=1');
+    Object.entries(animationConfigs).forEach(([key, config]) => {
+      ani.from(
+        `#section .${key}`,
+        {
+          autoAlpha: 0,
+          duration: config.duration,
+          y: config.y,
+        },
+        '+=1'
+      );
+    });
 
     ScrollTrigger.create({
       animation: ani,
@@ -28,7 +55,23 @@ export const Gsap3 = () => {
       anticipatePin: 1,
       markers: true,
     });
+
+    GSDevTools.create({ animation: ani });
   });
+
+  const handleConfigChange = (field, value) => {
+    setAnimationConfigs((prev) => ({
+      ...prev,
+      [selectedText]: {
+        ...prev[selectedText],
+        [field]: Number(value),
+      },
+    }));
+  };
+
+  const handleSave = () => {
+    localStorage.setItem('gsapDebugConfig', JSON.stringify(animationConfigs));
+  };
 
   return (
     <main style={main}>
@@ -64,6 +107,13 @@ export const Gsap3 = () => {
           </p>
         </div>
       </section>
+      <DebugPanel
+        selectedText={selectedText}
+        animationConfigs={animationConfigs}
+        onConfigChange={handleConfigChange}
+        onTextSelect={setSelectedText}
+        onSave={handleSave}
+      />
     </main>
   );
 };

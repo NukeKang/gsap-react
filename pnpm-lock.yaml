@@ -14,6 +14,12 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
+      gsap-trial:
+        specifier: ^3.12.5
+        version: 3.12.5
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -800,6 +806,9 @@ packages:
   gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
 
+  gsap-trial@3.12.5:
+    resolution: {integrity: sha512-Mdq2sLBq6rt9qje/MoF/hRa/xKfvKOUdllPouU2Fhz1K6mpCk0SOGBDhxCrOrJXZ4O7YFFRFVADKIJVeHdKA8A==}
+
   gsap@3.12.5:
     resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
 
@@ -991,6 +1000,9 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
+  lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -2145,6 +2157,8 @@ snapshots:
     dependencies:
       get-intrinsic: 1.2.4
 
+  gsap-trial@3.12.5: {}
+
   gsap@3.12.5: {}
 
   has-bigints@1.0.2: {}
@@ -2319,6 +2333,8 @@ snapshots:
       p-locate: 5.0.0
 
   lodash.merge@4.6.2: {}
+
+  lodash@4.17.21: {}
 
   loose-envify@1.4.0:
     dependencies:
